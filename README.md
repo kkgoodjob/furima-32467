@@ -2,24 +2,21 @@
 
 ## users テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| nickname         | string  | null: false |
-| email            | string  | null: false |
-| password         | string  | null: false |
-| last_name_kanji  | string  | null: false |
-| first_name_kanji | string  | null: false |
-| last_name_kana   | string  | null: false |
-| first_name_kana  | string  | null: false |
-| birth_year       | integer | null: false |
-| birth_month      | integer | null: false |
-| birth_day        | integer | null: false |
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| nickname           | string  | null: false |
+| email              | string  | null: false |
+| encrypted-password | string  | null: false |
+| last_name_kanji    | string  | null: false |
+| first_name_kanji   | string  | null: false |
+| last_name_kana     | string  | null: false |
+| first_name_kana    | string  | null: false |
+| birthday           | date    | null: false |
 
 ### Association
 
 - has_many :items
 - has_many :orders
-- belongs_to :address
 
 
 ## items テーブル
@@ -39,7 +36,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :order
+- has_one :order
 
 ## orders テーブル
 
@@ -64,10 +61,10 @@
 | house_number     | string     | null: false                    |
 | building_name    | string     |                                |
 | phone_number     | string     | null: false                    |
+| order            | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :order
 
 
