@@ -6,7 +6,7 @@ FactoryBot.define do
 
     nickname         { Faker::Name.initials(number: 2) }
     email            { Faker::Internet.free_email }
-    password         { Faker::Internet.password(min_length: 6) + "a1" }
+    password         { Faker::Internet.password(min_length: 6) + 'a1' }
     birthday         { Faker::Date.backward }
 
     first_name_kanji { person.first.kanji }
