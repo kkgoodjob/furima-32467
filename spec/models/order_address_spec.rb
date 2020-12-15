@@ -51,7 +51,7 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include("House number can't be blank")
     end
     it 'prefecture_idが1だと保存できないこと' do
-      @order_address.prefecture_id = '1'
+      @order_address.prefecture_id = 1
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
     end
