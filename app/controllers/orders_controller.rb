@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_item, only:[:create, :index]
+  before_action :find_item, only: [:create, :index]
   def index
     @orders = Order.all
     if user_signed_in?
