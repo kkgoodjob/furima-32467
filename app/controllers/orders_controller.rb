@@ -1,12 +1,11 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!
+  before_action :find_item, only:[:create, :index]
   def index
-    @order_item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
-    @order_item = Item.find(params[:item_id])
-    binding.pry
     @order_address = OrderAddress.new(order_address_params)
     if @order_address.valid?
       pay_item
@@ -30,5 +29,9 @@ class OrdersController < ApplicationController
       card: order_address_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def find_item
+    @order_item = Item.find(params[:item_id])
   end
 end
