@@ -6,9 +6,7 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new
     if user_signed_in? && current_user.id != @order_item.user_id
       @orders.each do |order|
-        if @order_item.id == order.item_id
-          redirect_to root_path and return
-        end
+        redirect_to root_path and return if @order_item.id == order.item_id
       end
     else
       redirect_to root_path and return
