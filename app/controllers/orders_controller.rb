@@ -2,12 +2,9 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_item, only: [:create, :index]
   def index
-    @orders = Order.all
     @order_address = OrderAddress.new
     if user_signed_in? && current_user.id != @order_item.user_id
-      @orders.each do |order|
-        redirect_to root_path and return if @order_item.id == order.item_id
-      end
+        redirect_to root_path and return if @order_item.id == @order_item.order.item_id
     else
       redirect_to root_path and return
     end
