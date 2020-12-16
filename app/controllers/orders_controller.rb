@@ -3,8 +3,10 @@ class OrdersController < ApplicationController
   before_action :find_item, only: [:create, :index]
   def index
     @order_address = OrderAddress.new
-    if current_user.id == @order_item.user_id || @order_item.id == @order_item.order.item_id
-      redirect_to root_path and return
+    if @order_item.order != nil
+      if current_user.id == @order_item.user_id || @order_item.id == @order_item.order.item_id
+        redirect_to root_path and return
+      end
     end
   end
 
